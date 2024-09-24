@@ -5,16 +5,82 @@ import Footer from "./components/Footer";
 import Button from "./components/Button";
 import { FaMinus } from "react-icons/fa";
 import { CgUndo } from "react-icons/cg";
+import { SlControlPause } from "react-icons/sl";
+import { VscDebugStart } from "react-icons/vsc";
+import { FaPlus } from "react-icons/fa6";
+import { PiPause } from "react-icons/pi";
 
 function App() {
-
   const [homeScore, setHomeScore] = useState(0);
   const [guestScore, setGuestScore] = useState(0);
+  const [time, setTime] = useState(600);
+  const [shotClock, setShotClock] = useState(24);
+  const [isTimeActive, setIsTimeActive] = useState(false);
+  const [isShotClockActive, setIsShotClockActive] = useState(false);
+  const [quarter, setQuarter] = useState(0);
+  const [homeFouls, setHomeFouls] = useState(0);
+  const [guestFouls, setGuestFouls] = useState(0);
+
+  const timeFormat = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds
+      .toString()
+      .padStart(2, '0')}`;
+  };
+
+  const shotClockFormat = (shotClock) => {
+    return shotClock > 9 ? shotClock : `0${shotClock}`;
+  };
+
+  // USEEFFECT TIME
+  useEffect(() => {
+    let interval = null;
+    if (isTimeActive && time > 0) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime - 1);
+      }, 1000); 
+    } else if (time === 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isTimeActive, time]);
+
+  // USEEFFECT SHOT CLOCK
+  useEffect(() => {
+    let interval = null;
+    if (isShotClockActive && shotClock > 0) {
+      interval = setInterval(() => {
+        setShotClock((prevShotClock) => prevShotClock - 1);
+      }, 1000);
+    } else if (shotClock === 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isShotClockActive, shotClock]);
+
+  const toggleStartStop = () => {
+    setIsTimeActive(!isTimeActive);
+  };
+
+  const toggleShotClock = () => {
+    setIsShotClockActive(!isShotClockActive);
+  };
+
+ const resetTime = () => {
+    setTime(600);
+    setIsTimeActive(false);
+  };
+
+  const resetShotClock = () => {
+    setShotClock(24);
+    setIsShotClockActive(false);
+  };
 
   useEffect(() => {
     // BROWSER TAG NAME
     document.title = "Basketball Scoreboard";
-  });
+  }, []);
 
   return (
     <>
@@ -38,11 +104,11 @@ function App() {
 
                 <Section>
                   <Label>TIME</Label>
-                  <Label className={"bg-[#000000] text-green-600 p-3 rounded-md"}>10:00</Label>
+                  <Label className={"bg-[#000000] text-green-600 p-3 rounded-md"}>{timeFormat(time)}</Label>
                 </Section>
 
                 <Section>
-                  <Label className={"bg-[#000000] p-3 rounded-md"}>00</Label>
+                  <Label className={"bg-[#000000] p-3 rounded-md"}>{quarter}</Label>
                   <Label>QUARTER</Label>
                 </Section>
 
@@ -58,17 +124,17 @@ function App() {
             <div className="flex items-center gap-6">
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>00</Label>
+                <Label className={"bg-[#000000] p-3 rounded-md"}>{homeFouls}</Label>
                 <Label>FOULS</Label>
               </Section>
 
               <Section>
-                <Label className={"bg-[#000000] text-red-600 p-3 rounded-md"}>24</Label>
+                <Label className={"bg-[#000000] text-red-600 p-3 rounded-md"}>{shotClockFormat(shotClock)}</Label>
                 <Label>SHOT CLOCK</Label>
               </Section>
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>00</Label>
+                <Label className={"bg-[#000000] p-3 rounded-md"}>{guestFouls}</Label>
                 <Label>FOULS</Label>
               </Section>
 
@@ -78,11 +144,11 @@ function App() {
 
         </div>
         
-        {/* Controller */}
+        {/* HOME CONTROLLER */}
         <div className="flex flex-col items-center gap-3 pb-10 lg:pb-0">
           <h1 className="font-inter font-extrabold text-white text-3xl">CONTROLLER</h1>
           <div className="flex flex-col lg:flex-row items-center gap-10">
-            <Section className={"flex gap-2"}>
+            <Section className={"flex items-center gap-2"}>
               <Label>HOME</Label>
               <div className="flex items-center gap-2">
                 <Button 
@@ -118,7 +184,52 @@ function App() {
               </div>
             </Section>
 
-            <Section className={"flex gap-2"}>
+            {/* TIME and QUARTER CONTROLLER */}
+            <div className="flex flex-col items-center gap-5">
+              <Section className={"flex items-center gap-2"}>
+                <Label>TIME</Label>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    className={"bg-red-700 border-2 border-white"}
+                    onClick={toggleStartStop}
+                  >
+                    {isTimeActive ? <SlControlPause /> : <VscDebugStart />}
+                  </Button>
+                  <Button 
+                    className={"bg-red-700 border-2 border-white"}
+                    onClick={resetTime}
+                  >
+                    <CgUndo />
+                  </Button>
+                </div>
+              </Section>
+              <Section className={"flex items-center gap-2"}>
+                <Label>QUARTER</Label>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    className={"bg-red-700 border-2 border-white"}
+                    onClick={() => setQuarter(quarter + 1)}
+                  >
+                    <FaPlus />
+                  </Button>
+                  <Button 
+                    className={"bg-red-700 border-2 border-white"}
+                    onClick={() => setQuarter(quarter - 1)}
+                  >
+                    <FaMinus />
+                  </Button>
+                  <Button 
+                    className={"bg-red-700 border-2 border-white"}
+                    onClick={() => setQuarter(0)}
+                  >
+                    <CgUndo />
+                  </Button>
+                </div>
+              </Section>
+            </div>
+
+            {/* GUEST CONTROLLER */}
+            <Section className={"flex items-center gap-2"}>
               <Label>GUEST</Label>
               <div className="flex items-center gap-2">
                 <Button 
@@ -148,6 +259,76 @@ function App() {
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(0)}
+                >
+                  <CgUndo />
+                </Button>
+              </div>
+            </Section>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-center gap-5">
+            {/* HOME FOULS CONTROLLER */}
+            <Section className={"flex items-center gap-2"}>
+              <Label>FOULS</Label>
+              <div className="flex items-center gap-2">
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setHomeFouls(homeFouls + 1)}
+                >
+                  <FaPlus />
+                </Button>
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setHomeFouls(homeFouls - 1)}
+                >
+                  <FaMinus />
+                </Button>
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setHomeFouls(0)}
+                >
+                  <CgUndo />
+                </Button>
+              </div>
+            </Section>
+
+            <Section className={"flex items-center gap-2"}>
+              <Label>SHOT CLOCK</Label>
+              <div className="flex items-center gap-2">
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={toggleShotClock}
+                >
+                  {isShotClockActive ? <SlControlPause /> : <VscDebugStart />}
+                </Button>
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={resetShotClock}
+                >
+                  <CgUndo />
+                </Button>
+              </div>
+            </Section>
+
+            {/* GUEST FOULS CONTROLLER */}
+            <Section className={"flex gap-2"}>
+              <Label>FOULS</Label>
+              <div className="flex items-center gap-2">
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setGuestFouls(guestFouls + 1)}
+                >
+                  <FaPlus />
+                </Button>
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setGuestFouls(guestFouls - 1)}
+                >
+                  <FaMinus />
+                </Button>
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setGuestFouls(0)}
                 >
                   <CgUndo />
                 </Button>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Section = ({children}) => {
+const Section = ({ children, className }) => {
   return (
     <>
-        <section className="flex flex-col items-center">
+        <section className={`${className} flex flex-col items-center`}>
             {children}
         </section>
     </>

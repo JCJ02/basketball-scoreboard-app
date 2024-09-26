@@ -96,27 +96,27 @@ function App() {
             <div className="flex items-center gap-10">
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>{homeScore}</Label>
-                <Label>HOME</Label>
+                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{homeScore}</Label>
+                <Label className={"text-white"}>HOME</Label>
               </Section>
 
               <div className="flex flex-col items-center gap-5">
 
                 <Section>
-                  <Label>TIME</Label>
+                  <Label className={"text-white"}>TIME</Label>
                   <Label className={"bg-[#000000] text-green-600 p-3 rounded-md"}>{timeFormat(time)}</Label>
                 </Section>
 
                 <Section>
-                  <Label className={"bg-[#000000] p-3 rounded-md"}>{quarter}</Label>
-                  <Label>QUARTER</Label>
+                  <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{quarter}</Label>
+                  <Label className={"text-white"}>QUARTER</Label>
                 </Section>
 
               </div>
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>{guestScore}</Label>
-                <Label>GUEST</Label>
+                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{guestScore}</Label>
+                <Label className={"text-white"}>GUEST</Label>
               </Section>
 
             </div>
@@ -124,18 +124,18 @@ function App() {
             <div className="flex items-center gap-6">
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>{homeFouls}</Label>
-                <Label>FOULS</Label>
+                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{homeFouls}</Label>
+                <Label className={"text-white"}>FOULS</Label>
               </Section>
 
               <Section>
                 <Label className={"bg-[#000000] text-red-600 p-3 rounded-md"}>{shotClockFormat(shotClock)}</Label>
-                <Label>SHOT CLOCK</Label>
+                <Label className={"text-white"}>SHOT CLOCK</Label>
               </Section>
 
               <Section>
-                <Label className={"bg-[#000000] p-3 rounded-md"}>{guestFouls}</Label>
-                <Label>FOULS</Label>
+                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{guestFouls}</Label>
+                <Label className={"text-white"}>FOULS</Label>
               </Section>
 
             </div>
@@ -149,7 +149,7 @@ function App() {
           <h1 className="font-inter font-extrabold text-white text-3xl">CONTROLLER</h1>
           <div className="flex flex-col lg:flex-row items-center gap-10">
             <Section className={"flex items-center gap-2"}>
-              <Label>HOME</Label>
+              <Label className={"text-white"}>HOME</Label>
               <div className="flex items-center gap-2">
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
@@ -187,7 +187,7 @@ function App() {
             {/* TIME and QUARTER CONTROLLER */}
             <div className="flex flex-col items-center gap-5">
               <Section className={"flex items-center gap-2"}>
-                <Label>TIME</Label>
+                <Label className={"text-white"}>TIME</Label>
                 <div className="flex items-center gap-2">
                   <Button 
                     className={"bg-red-700 border-2 border-white"}
@@ -204,7 +204,7 @@ function App() {
                 </div>
               </Section>
               <Section className={"flex items-center gap-2"}>
-                <Label>QUARTER</Label>
+                <Label className={"text-white"}>QUARTER</Label>
                 <div className="flex items-center gap-2">
                   <Button 
                     className={"bg-red-700 border-2 border-white"}
@@ -230,7 +230,7 @@ function App() {
 
             {/* GUEST CONTROLLER */}
             <Section className={"flex items-center gap-2"}>
-              <Label>GUEST</Label>
+              <Label className={"text-white"}>GUEST</Label>
               <div className="flex items-center gap-2">
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
@@ -269,7 +269,7 @@ function App() {
           <div className="flex flex-col lg:flex-row items-center gap-5">
             {/* HOME FOULS CONTROLLER */}
             <Section className={"flex items-center gap-2"}>
-              <Label>FOULS</Label>
+              <Label className={"text-white"}>FOULS</Label>
               <div className="flex items-center gap-2">
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
@@ -293,7 +293,7 @@ function App() {
             </Section>
 
             <Section className={"flex items-center gap-2"}>
-              <Label>SHOT CLOCK</Label>
+              <Label className={"text-white"}>SHOT CLOCK</Label>
               <div className="flex items-center gap-2">
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
@@ -301,6 +301,14 @@ function App() {
                 >
                   {isShotClockActive ? <SlControlPause /> : <VscDebugStart />}
                 </Button>
+
+                <Button 
+                  className={"bg-red-700 border-2 border-white"}
+                  onClick={() => setShotClock(14)}
+                >
+                  14
+                </Button>
+                
                 <Button 
                   className={"bg-red-700 border-2 border-white"}
                   onClick={resetShotClock}
@@ -312,7 +320,7 @@ function App() {
 
             {/* GUEST FOULS CONTROLLER */}
             <Section className={"flex gap-2"}>
-              <Label>FOULS</Label>
+              <Label className={"text-white"}>FOULS</Label>
               <div className="flex items-center gap-2">
                 <Button 
                   className={"bg-red-700 border-2 border-white"}

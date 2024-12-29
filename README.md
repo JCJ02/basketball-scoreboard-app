@@ -1,6 +1,29 @@
 # Basketball Scoreboard Application
 - A Basketball Scoreboard Application is a digital tool or software designed to display and manage scores, time, and other game-related information during basketball games. These applications can be used in various settings, such as professional games, amateur leagues, schools, or even casual games.
 
+## Get started:
+Use `git clone` to clone this repo:
+```console
+$ git clone https://github.com/JCJ02/basketball-scoreboard-app.git
+```
+or
+
+Click `Clone or download` and `Download ZIP` to get this repo.
+
+## Install packages
+1. Open a terminal
+2. Go to `basketball-scoreboard-app` folder then
+```console
+$ npm install
+```
+
+## To Start the project
+Make sure you setup your `DATABASE` already before starting and using `REST API`
+
+```console
+$ npm run dev
+```
+
 ## Features of this Basketball Scoreboard Application
 1. Real-Time Score Updates: Displays the points for each team and updates instantly when scores change.
 2. Game Clock: Tracks the game time, including the countdown for quarters or halves.

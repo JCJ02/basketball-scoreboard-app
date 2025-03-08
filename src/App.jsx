@@ -39,7 +39,7 @@ function App() {
     if (isTimeActive && time > 0) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
-      }, 1000); 
+      }, 1000);
     } else if (time === 0) {
       clearInterval(interval);
     }
@@ -67,7 +67,7 @@ function App() {
     setIsShotClockActive(!isShotClockActive);
   };
 
- const resetTime = () => {
+  const resetTime = () => {
     setTime(600);
     setIsTimeActive(false);
   };
@@ -84,27 +84,27 @@ function App() {
 
   return (
     <>
-      <div className="bg-[#000000] flex flex-col lg:flex-row justify-center items-center gap-10 h-full lg:h-screen w-full">
-        
-        {/* Scoreboard */}
-        <div className="flex flex-col items-center gap-3 pt-10 lg:pt-0">
+      <div className="bg-[#000000] flex flex-col xl:flex-row justify-center items-center gap-10 h-full xl:h-screen w-full">
 
-          <h1 className="font-inter font-extrabold text-white text-3xl">SCOREBOARD</h1>
-          
+        {/* Scoreboard */}
+        <div className="flex flex-col items-center gap-3 pt-10 xl:pt-0">
+
+          <h1 className="font-inter font-extrabold text-white text-lg">SCOREBOARD</h1>
+
           <div className="bg-[#0D294E] flex flex-col items-center gap-4 p-5 rounded-md border-4 border-white">
 
             <div className="flex items-center gap-10">
 
               <Section>
-                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{homeScore}</Label>
-                <Label className={"text-white"}>HOME</Label>
+                <Label className={"bg-[#000000] text-white text-xs md:text-md lg:text-lg p-3 rounded-md"}>{homeScore}</Label>
+                <Label className={"text-white text-xs md:text-md lg:text-lg"}>HOME</Label>
               </Section>
 
               <div className="flex flex-col items-center gap-5">
 
                 <Section>
-                  <Label className={"text-white"}>TIME</Label>
-                  <Label className={"bg-[#000000] text-green-600 p-3 rounded-md"}>{timeFormat(time)}</Label>
+                  <Label className={"text-white text-sm md:text-md lg:text-lg"}>TIME</Label>
+                  <Label className={"bg-[#000000] text-green-600 text-xs md:text-md lg:text-lg p-3 rounded-md"}>{timeFormat(time)}</Label>
                 </Section>
 
                 <Section>
@@ -115,8 +115,8 @@ function App() {
               </div>
 
               <Section>
-                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{guestScore}</Label>
-                <Label className={"text-white"}>GUEST</Label>
+                <Label className={"bg-[#000000] text-white text-xs md:text-md lg:text-lg p-3 rounded-md"}>{guestScore}</Label>
+                <Label className={"text-white text-sm md:text-md lg:text-lg"}>GUEST</Label>
               </Section>
 
             </div>
@@ -124,18 +124,18 @@ function App() {
             <div className="flex items-center gap-6">
 
               <Section>
-                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{homeFouls}</Label>
-                <Label className={"text-white"}>FOULS</Label>
+                <Label className={"bg-[#000000] text-white text-xs md:text-md lg:text-lg p-3 rounded-md"}>{homeFouls}</Label>
+                <Label className={"text-white text-sm md:text-md lg:text-lg"}>FOULS</Label>
               </Section>
 
               <Section>
-                <Label className={"bg-[#000000] text-red-600 p-3 rounded-md"}>{shotClockFormat(shotClock)}</Label>
-                <Label className={"text-white"}>SHOT CLOCK</Label>
+                <Label className={"bg-[#000000] text-red-600 text-xs md:text-md lg:text-lg p-3 rounded-md"}>{shotClockFormat(shotClock)}</Label>
+                <Label className={"text-white text-sm md:text-md lg:text-lg"}>SHOT CLOCK</Label>
               </Section>
 
               <Section>
-                <Label className={"bg-[#000000] text-white p-3 rounded-md"}>{guestFouls}</Label>
-                <Label className={"text-white"}>FOULS</Label>
+                <Label className={"bg-[#000000] text-white text-xs md:text-md lg:text-lg p-3 rounded-md"}>{guestFouls}</Label>
+                <Label className={"text-white text-sm md:text-md lg:text-lg"}>FOULS</Label>
               </Section>
 
             </div>
@@ -143,39 +143,39 @@ function App() {
           </div>
 
         </div>
-        
+
         {/* HOME CONTROLLER */}
-        <div className="flex flex-col items-center gap-3 pb-10 lg:pb-0">
-          <h1 className="font-inter font-extrabold text-white text-3xl">CONTROLLER</h1>
+        <div className="flex flex-col items-center gap-3 pb-10 xl:pb-0">
+          <h1 className="font-inter font-extrabold text-white text-xl">CONTROLLER</h1>
           <div className="flex flex-col lg:flex-row items-center gap-10">
             <Section className={"flex items-center gap-2"}>
-              <Label className={"text-white"}>HOME</Label>
+              <Label className={"text-white text-xs md:text-md lg:text-lg"}>HOME</Label>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeScore(homeScore + 3)}
                 >
                   +3
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeScore(homeScore + 2)}
                 >
                   +2
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeScore(homeScore + 1)}
                 >
                   +1
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeScore(homeScore - 1)}
                 >
                   <FaMinus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeScore(0)}
                 >
@@ -187,15 +187,15 @@ function App() {
             {/* TIME and QUARTER CONTROLLER */}
             <div className="flex flex-col items-center gap-5">
               <Section className={"flex items-center gap-2"}>
-                <Label className={"text-white"}>TIME</Label>
+                <Label className={"text-white text-xs md:text-md lg:text-lg"}>TIME</Label>
                 <div className="flex items-center gap-2">
-                  <Button 
+                  <Button
                     className={"bg-red-700 border-2 border-white"}
                     onClick={toggleStartStop}
                   >
                     {isTimeActive ? <SlControlPause /> : <VscDebugStart />}
                   </Button>
-                  <Button 
+                  <Button
                     className={"bg-red-700 border-2 border-white"}
                     onClick={resetTime}
                   >
@@ -204,21 +204,21 @@ function App() {
                 </div>
               </Section>
               <Section className={"flex items-center gap-2"}>
-                <Label className={"text-white"}>QUARTER</Label>
+                <Label className={"text-white text-xs md:text-md lg:text-lg"}>QUARTER</Label>
                 <div className="flex items-center gap-2">
-                  <Button 
+                  <Button
                     className={"bg-red-700 border-2 border-white"}
                     onClick={() => setQuarter(quarter + 1)}
                   >
                     <FaPlus />
                   </Button>
-                  <Button 
+                  <Button
                     className={"bg-red-700 border-2 border-white"}
                     onClick={() => setQuarter(quarter - 1)}
                   >
                     <FaMinus />
                   </Button>
-                  <Button 
+                  <Button
                     className={"bg-red-700 border-2 border-white"}
                     onClick={() => setQuarter(0)}
                   >
@@ -230,33 +230,33 @@ function App() {
 
             {/* GUEST CONTROLLER */}
             <Section className={"flex items-center gap-2"}>
-              <Label className={"text-white"}>GUEST</Label>
+              <Label className={"text-white text-xs md:text-md lg:text-lg"}>GUEST</Label>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(guestScore + 3)}
                 >
                   +3
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(guestScore + 2)}
                 >
                   +2
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(guestScore + 1)}
                 >
                   +1
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(guestScore - 1)}
                 >
                   <FaMinus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestScore(0)}
                 >
@@ -269,21 +269,21 @@ function App() {
           <div className="flex flex-col lg:flex-row items-center gap-5">
             {/* HOME FOULS CONTROLLER */}
             <Section className={"flex items-center gap-2"}>
-              <Label className={"text-white"}>FOULS</Label>
+              <Label className={"text-white text-xs md:text-md lg:text-lg"}>FOULS</Label>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeFouls(homeFouls + 1)}
                 >
                   <FaPlus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeFouls(homeFouls - 1)}
                 >
                   <FaMinus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setHomeFouls(0)}
                 >
@@ -293,23 +293,23 @@ function App() {
             </Section>
 
             <Section className={"flex items-center gap-2"}>
-              <Label className={"text-white"}>SHOT CLOCK</Label>
+              <Label className={"text-white text-xs md:text-md lg:text-lg"}>SHOT CLOCK</Label>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={toggleShotClock}
                 >
                   {isShotClockActive ? <SlControlPause /> : <VscDebugStart />}
                 </Button>
 
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setShotClock(14)}
                 >
                   14
                 </Button>
-                
-                <Button 
+
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={resetShotClock}
                 >
@@ -320,21 +320,21 @@ function App() {
 
             {/* GUEST FOULS CONTROLLER */}
             <Section className={"flex gap-2"}>
-              <Label className={"text-white"}>FOULS</Label>
+              <Label className={"text-white text-xs md:text-md lg:text-lg"}>FOULS</Label>
               <div className="flex items-center gap-2">
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestFouls(guestFouls + 1)}
                 >
                   <FaPlus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestFouls(guestFouls - 1)}
                 >
                   <FaMinus />
                 </Button>
-                <Button 
+                <Button
                   className={"bg-red-700 border-2 border-white"}
                   onClick={() => setGuestFouls(0)}
                 >
@@ -346,7 +346,7 @@ function App() {
         </div>
 
       </div>
-      
+
       <Footer />
 
     </>

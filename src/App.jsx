@@ -84,7 +84,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-[#000000] flex flex-col xl:flex-row justify-center items-center gap-10 h-full xl:h-screen w-full">
+      <div className="bg-[#000000] flex flex-col lg:flex-row justify-center items-center gap-10 h-full lg:h-screen w-full">
 
         {/* Scoreboard */}
         <div className="flex flex-col items-center gap-3 pt-10 xl:pt-0">
@@ -145,9 +145,9 @@ function App() {
         </div>
 
         {/* HOME CONTROLLER */}
-        <div className="flex flex-col items-center gap-3 pb-10 xl:pb-0">
+        <div className="flex flex-col items-center gap-3 py-10 xl:pb-0">
           <h1 className="font-inter font-extrabold text-white text-xl">CONTROLLER</h1>
-          <div className="flex flex-col lg:flex-row items-center gap-10">
+          <div className="flex flex-col xl:flex-row items-center gap-5">
             <Section className={"flex items-center gap-2"}>
               <Label className={"text-white text-xs md:text-md lg:text-lg"}>HOME</Label>
               <div className="flex items-center gap-2">
